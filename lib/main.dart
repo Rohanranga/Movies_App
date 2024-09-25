@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/downlaod_provider.dart';
-import 'package:movies_app/films_list.dart';
 import 'package:movies_app/home_page.dart';
 import 'package:provider/provider.dart';
 

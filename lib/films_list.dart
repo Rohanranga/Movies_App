@@ -1,5 +1,6 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/downlaod_provider.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/films_card.dart';
 import 'dart:convert';
@@ -64,9 +65,11 @@ class _FilmsListState extends State<FilmsList> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'MYFLIX\nMovies',
-                  style: Theme.of(context).textTheme.titleLarge,
+                child: ZoomIn(
+                  child: Text(
+                    'MYFLIX\nMovies',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ),
               ),
               Expanded(
@@ -121,17 +124,20 @@ class _FilmsListState extends State<FilmsList> {
                                 ),
                               );
                             },
-                            child: FilmsCard(
-                              title: show['name'] ?? 'No Title',
-                              director: show['network'] != null
-                                  ? show['network']['name']
-                                  : 'No Network',
-                              image: show['image'] != null
-                                  ? show['image']['medium']
-                                  : '',
-                              backgroundColor: index.isEven
-                                  ? const Color.fromRGBO(216, 240, 253, 1)
-                                  : const Color.fromRGBO(245, 247, 249, 1),
+                            child: Animate(
+                              effects: [FadeEffect(), ScaleEffect()],
+                              child: FilmsCard(
+                                title: show['name'] ?? 'No Title',
+                                director: show['network'] != null
+                                    ? show['network']['name']
+                                    : 'No Network',
+                                image: show['image'] != null
+                                    ? show['image']['medium']
+                                    : '',
+                                backgroundColor: index.isEven
+                                    ? const Color.fromRGBO(216, 240, 253, 1)
+                                    : const Color.fromRGBO(245, 247, 249, 1),
+                              ),
                             ),
                           );
                         },
