@@ -55,6 +55,7 @@ class _FilmsListState extends State<FilmsList> {
       ),
       borderRadius: BorderRadius.horizontal(
         left: Radius.circular(50),
+        right: Radius.circular(50),
       ),
     );
 
@@ -117,15 +118,28 @@ class _FilmsListState extends State<FilmsList> {
                           return GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return FilmsDetailsPage(films: show);
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          FilmsDetailsPage(films: show),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 50),
+                                  transitionsBuilder:
+                                      (context, animation1, animation2, child) {
+                                    return ScaleTransition(
+                                      scale: animation1,
+                                      alignment: Alignment.center,
+                                      child: child,
+                                    );
                                   },
                                 ),
                               );
                             },
                             child: Animate(
-                              effects: [FadeEffect(), ScaleEffect()],
+                              effects: const [
+                                FadeEffect(),
+                                ScaleEffect(),
+                              ],
                               child: FilmsCard(
                                 title: show['name'] ?? 'No Title',
                                 director: show['network'] != null
