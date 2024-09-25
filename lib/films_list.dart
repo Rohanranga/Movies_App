@@ -20,13 +20,13 @@ class _FilmsListState extends State<FilmsList> {
   @override
   void initState() {
     super.initState();
-    futureShows = fetchShows(); // Fetch data from API initially
+    futureShows = fetchShows();
   }
 
   Future<List<dynamic>> fetchShows([String searchTerm = '']) async {
     final url = searchTerm.isEmpty
-        ? 'https://api.tvmaze.com/shows' // Default URL if no search term
-        : 'https://api.tvmaze.com/search/shows?q=$searchTerm'; // URL with search term
+        ? 'https://api.tvmaze.com/shows'
+        : 'https://api.tvmaze.com/search/shows?q=$searchTerm';
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -41,7 +41,6 @@ class _FilmsListState extends State<FilmsList> {
 
   void _searchShows() {
     setState(() {
-      // Fetch shows based on the search term
       futureShows = fetchShows(_searchController.text);
     });
   }
@@ -85,7 +84,7 @@ class _FilmsListState extends State<FilmsList> {
               ),
               IconButton(
                 icon: const Icon(Icons.search),
-                onPressed: _searchShows, // Call the search function
+                onPressed: _searchShows,
               ),
             ],
           ),

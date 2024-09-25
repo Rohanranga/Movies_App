@@ -59,7 +59,31 @@ class _FilmsDetailsPageState extends State<FilmsDetailsPage> {
                     )
                   : const Text('Image not available'),
               const Spacer(),
-              // Director info
+              Text(
+                '@summary-${widget.films['summary'] != null ? widget.films['summary'].substring(0, 70) : 'Unknown summary'}...',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Show full summary in a dialog or navigate to a new page
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Full Summary'),
+                      content: Text(
+                        widget.films['summary'] ?? 'Unknown summary',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Read more'),
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 10, color: Colors.blue),
+                ),
+              ),
               Container(
                 height: MediaQuery.of(context).size.height *
                     0.2, // Responsive height
@@ -80,8 +104,8 @@ class _FilmsDetailsPageState extends State<FilmsDetailsPage> {
                       onPressed: onTap,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
-                        fixedSize: Size(MediaQuery.of(context).size.width * 0.8,
-                            50), // Responsive button size
+                        fixedSize:
+                            Size(MediaQuery.of(context).size.width * 0.8, 50),
                       ),
                       child: const Text(
                         'Add to downloads',

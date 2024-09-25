@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      // Specify the type parameter
       create: (context) => DownlaodProvider(),
       child: MaterialApp(
         title: 'movies app',
