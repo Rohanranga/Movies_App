@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/films_card.dart';
 import 'dart:convert';
-
 import 'package:movies_app/films_details_page.dart';
 
 class FilmsList extends StatefulWidget {
@@ -76,7 +75,7 @@ class _FilmsListState extends State<FilmsList> {
               Expanded(
                 child: TextField(
                   controller: _searchController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Search',
                     border: border,
                     enabledBorder: border,
